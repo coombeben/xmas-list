@@ -3,7 +3,7 @@ name: Christmas Lists CI/CD
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   deploy:
@@ -36,4 +36,7 @@ jobs:
           cd $HOST_DEPLOY_DIR
           docker compose -p $PROJECT_NAME down
           docker compose -p $PROJECT_NAME up -d
+
+      - name: Clean up
+        run: |
           docker system prune -f

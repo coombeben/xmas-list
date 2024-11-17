@@ -16,7 +16,6 @@ Next time:
 
 ```text
 SECRET_KEY
-FLASK_ENV
 APP_PASSWORD
 
 POSTGRES_DB

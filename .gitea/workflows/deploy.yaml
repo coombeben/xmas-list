@@ -13,6 +13,11 @@ jobs:
       BACKEND_IMAGE_NAME: flask-app
       FRONTEND_IMAGE_NAME: react-app
       HOST_DEPLOY_DIR: /home/docker/XmasList
+      SECRET_KEY: ${{ secrets.SECRET_KEY }}
+      APP_PASSWORD: ${{ secrets.APP_PASSWORD }}
+      POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
+      POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
+      POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
 
     steps:
       - name: Checkout

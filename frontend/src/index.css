@@ -1,0 +1,61 @@
+body {
+  margin: 0;
+  height: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.circle-initial {
+  width: 32px;
+  height: 32px;
+  text-align: center;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 16px;
+  padding-bottom: 1px;
+}
+
+.fade-container {
+  transition: opacity 0.5s ease-in-out;
+}
+
+.fade-container > * {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.fade-container > *:nth-child(1) {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Style for unselected buttons */
+.nav-btn:not(.active) {
+  border-left: 2px solid #ccc;
+  border-top: 2px solid #ccc;
+  border-right: 2px solid #ccc;
+  text-decoration: underline;
+}
+
+/* Content area background for the active page */
+.content-area.bg-body-tertiary {
+  background-color: #f1f3f5; /* Bootstrap's bg-body-tertiary color */
+  padding: 20px;
+  border-top: 2px solid #dee2e6;
+}

@@ -1,0 +1,39 @@
+name: Christmas Lists CI/CD
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      PROJECT_NAME: xmaslist
+      BACKEND_IMAGE_NAME: flask-app
+      FRONTEND_IMAGE_NAME: react-app
+      HOST_DEPLOY_DIR: /home/docker/XmasList
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Copy to host
+        run: |
+          mkdir -p $HOST_DEPLOY_DIR
+          cp docker-compose.yml $HOST_DEPLOY_DIR/          
+
+      - name: Build frontend
+        run: |
+          docker build -t FRONTEND_IMAGE_NAME frontend
+
+      - name: Build backend
+        run: |
+          docker build -t BACKEND_IMAGE_NAME backend
+
+      - name: Deploy
+        run: |
+          cd $HOST_DEPLOY_DIR
+          docker compose -p $PROJECT_NAME down
+          docker compose -p $PROJECT_NAME up -d
+          docker system prune -f

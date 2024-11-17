@@ -1,4 +1,10 @@
-# Flask Christmas list app
+# Christmas lists
+
+## React notes
+
+Look back on this and cringe deeply in a year's time ♥
+
+## Flask notes
 
 Baby's first REST API. 
 

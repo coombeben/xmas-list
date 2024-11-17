@@ -44,7 +44,7 @@ const UserSelectionPage = ({onUserSelect}) => {
     return (
         <div className="flex-grow-1 d-flex align-items-center justify-content-center">
             <div className="w-100 m-auto" style={{maxWidth: "330px", padding: "1rem"}}>
-                <p className="h3">Select or create a User</p>
+                <p className="h3">Select or create a user</p>
                 <div>
                     <p className="h4">Existing users</p>
                     {users.length > 0 ? (

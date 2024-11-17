@@ -3,7 +3,7 @@ name: Christmas Lists CI/CD
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   deploy:

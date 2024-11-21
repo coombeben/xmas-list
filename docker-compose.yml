@@ -4,6 +4,8 @@ services:
     depends_on:
       flask-app:
         condition: service_healthy
+    cap_drop:
+      - ALL
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf
     ports:
@@ -23,6 +25,8 @@ services:
     depends_on:
       db:
         condition: service_healthy
+    cap_drop:
+      - ALL
     healthcheck:
       test: [ "CMD", "curl", "http://localhost:5000/api/healthcheck" ]
       interval: 30s
@@ -36,6 +40,8 @@ services:
     hostname: db
     image: postgres
     restart: unless-stopped
+    cap_drop:
+      - ALL
     user: postgres
     shm_size: 128mb
     environment:

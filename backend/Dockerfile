@@ -7,7 +7,7 @@ RUN pip install -r requirements.txt --no-cache-dir
 
 COPY . .
 
-RUN groupadd -r flaskuser && useradd flaskuser flaskuser
+RUN groupadd -r flaskuser && useradd -r -g flaskuser flaskuser
 RUN chown -R flaskuser:flaskuser /home/flask
 USER flaskuser
 

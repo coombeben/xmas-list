@@ -6,6 +6,8 @@ services:
         condition: service_healthy
     cap_drop:
       - ALL
+    cap_add:
+      - CHOWN
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf
     ports:

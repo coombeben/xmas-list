@@ -62,7 +62,15 @@ jobs:
         run: docker compose pull -q
 
       - name: Deploy with Docker Compose
-        run: docker compose --env-file /home/docker/XmasList/.env -f docker-compose.yml up -d --remove-orphans
+        env:
+          SECRET_KEY: ${{ secrets.SECRET_KEY }}
+          APP_PASSWORD: ${{ secrets.APP_PASSWORD }}
+          FLASK_ENV: production
+          POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
+          POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
+          POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+          VITE_API_URL: ${{ secrets.VITE_API_URL }}
+        run: docker compose -f docker-compose.yml up -d --remove-orphans
 
       - name: Logout from registry
         run: docker logout ${{ vars.DOCKER_REGISTRY }}

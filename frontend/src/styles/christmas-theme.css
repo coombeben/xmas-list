@@ -1,0 +1,249 @@
+:root {
+    --christmas-red: #C41E3A;
+    --christmas-dark-red: #8B0000;
+    --christmas-green: #165B33;
+    --christmas-dark-green: #0F4C27;
+    --christmas-gold: #D4AF37;
+    --christmas-cream: #FFF8F0;
+    --christmas-light-cream: #FFFAF5;
+    --christmas-white: #FFFFFF;
+}
+
+/* Body and background styling */
+body {
+    background: linear-gradient(135deg, var(--christmas-cream) 0%, #FFE8D6 100%);
+    min-height: 100vh;
+}
+
+/* Subtle snowflake background pattern */
+body::before {
+    content: "❄ ✦ ❄ ✦ ❄ ✦ ❄ ✦ ❄ ✦ ❄ ✦ ❄ ✦ ❄ ✦ ❄ ✦ ❄ ✦";
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    font-size: 24px;
+    color: rgba(193, 30, 58, 0.05);
+    pointer-events: none;
+    z-index: 0;
+    line-height: 3;
+    word-spacing: 40px;
+    overflow: hidden;
+    white-space: pre-wrap;
+}
+
+/* Ensure content appears above background */
+#root > * {
+    position: relative;
+    z-index: 1;
+}
+
+/* Card styling */
+.card {
+    border: 2px solid var(--christmas-gold);
+    border-radius: 12px;
+    background: var(--christmas-white);
+    overflow: hidden;
+}
+
+.card-header {
+    background: linear-gradient(135deg, var(--christmas-red) 0%, var(--christmas-dark-red) 100%);
+    color: var(--christmas-white);
+    font-weight: 600;
+    border-bottom: 3px solid var(--christmas-gold);
+    padding: 1rem 1.25rem;
+}
+
+/* Headings */
+.h3, .h4 {
+    color: var(--christmas-dark-green);
+    font-weight: 700;
+}
+
+/* Button overrides */
+.btn-primary {
+    background: linear-gradient(135deg, var(--christmas-green) 0%, var(--christmas-dark-green) 100%);
+    border: 2px solid var(--christmas-dark-green);
+    color: var(--christmas-white);
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, var(--christmas-dark-green) 0%, var(--christmas-green) 100%);
+    border-color: var(--christmas-green);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(15, 76, 39, 0.3);
+}
+
+.btn-outline-primary {
+    color: var(--christmas-green);
+    border: 2px solid var(--christmas-green);
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-outline-primary:hover {
+    background: var(--christmas-green);
+    border-color: var(--christmas-green);
+    color: var(--christmas-white);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(22, 91, 51, 0.3);
+}
+
+.btn-success {
+    background: linear-gradient(135deg, var(--christmas-gold) 0%, #B8941F 100%);
+    border: 2px solid var(--christmas-gold);
+    color: var(--christmas-dark-green);
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-success:hover {
+    background: linear-gradient(135deg, #B8941F 0%, var(--christmas-gold) 100%);
+    border-color: #B8941F;
+    color: var(--christmas-dark-green);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(212, 175, 55, 0.4);
+}
+
+.btn-danger {
+    background: linear-gradient(135deg, var(--christmas-red) 0%, var(--christmas-dark-red) 100%);
+    border: 2px solid var(--christmas-dark-red);
+    color: var(--christmas-white);
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-danger:hover {
+    background: linear-gradient(135deg, var(--christmas-dark-red) 0%, var(--christmas-red) 100%);
+    border-color: var(--christmas-red);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(139, 0, 0, 0.4);
+}
+
+.btn-secondary {
+    background: #6c757d;
+    border: 2px solid #5a6268;
+    transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+    background: #5a6268;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(108, 117, 125, 0.3);
+}
+
+/* List group items */
+.list-group-item {
+    border-color: rgba(212, 175, 55, 0.3);
+    transition: all 0.3s ease;
+}
+
+.list-group-item:hover {
+    background-color: var(--christmas-light-cream);
+}
+
+.list-group-item-action:hover {
+    background-color: var(--christmas-light-cream);
+    border-color: var(--christmas-gold);
+}
+
+/* Form controls */
+.form-control:focus {
+    border-color: var(--christmas-green);
+    box-shadow: 0 0 0 0.25rem rgba(22, 91, 51, 0.25);
+}
+
+/* Modal styling */
+.modal-content {
+    border: 3px solid var(--christmas-gold);
+    border-radius: 12px;
+}
+
+.modal-header {
+    background: linear-gradient(135deg, var(--christmas-red) 0%, var(--christmas-dark-red) 100%);
+    color: var(--christmas-white);
+    border-bottom: 3px solid var(--christmas-gold);
+}
+
+.modal-title {
+    font-weight: 700;
+    color: var(--christmas-white);
+}
+
+.btn-close {
+    filter: brightness(0) invert(1);
+}
+
+/* Circle initial (user avatars) */
+.circle-initial {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    border: 2px solid var(--christmas-gold);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Add new item section styling */
+.bg-body-secondary {
+    background-color: var(--christmas-light-cream) !important;
+}
+
+.border-secondary {
+    border-color: var(--christmas-gold) !important;
+}
+
+/* Shadow enhancements */
+.shadow {
+    box-shadow: 0 4px 12px rgba(22, 91, 51, 0.15) !important;
+}
+
+/* Clickable elements */
+.clickable {
+    cursor: pointer;
+}
+
+/* Error text styling */
+p[style*="color: red"], p[style*="color:red"] {
+    color: var(--christmas-red) !important;
+    font-weight: 600;
+}
+
+/* Add festive sparkle effect on hover for cards */
+.card:hover {
+    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.3) !important;
+    transform: translateY(-2px);
+    transition: all 0.3s ease;
+}
+
+/* Icon styling (for Bootstrap Icons) */
+.bi {
+    color: inherit;
+}
+
+/* Additional polish for the dashed add item border */
+li[style*="border: 2px dashed"] {
+    border-color: var(--christmas-gold) !important;
+    background: linear-gradient(135deg, var(--christmas-light-cream) 0%, var(--christmas-white) 100%) !important;
+}
+
+li[style*="border: 2px dashed"]:hover {
+    border-color: var(--christmas-green) !important;
+    background: var(--christmas-light-cream) !important;
+}
+
+/* Small text muted color override */
+.text-muted {
+    color: #6c6c6c !important;
+}
+
+/* Purchased by text styling */
+.list-group-item strong {
+    color: var(--christmas-dark-green);
+}

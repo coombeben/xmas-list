@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from "react";
 import {fetchUserItems, updateItem, deleteItem, addItem} from "../services/api";
+import {renderDescription} from "../services/utils";
 
 const UserListPage = () => {
     const [items, setItems] = useState([]);
@@ -82,7 +83,7 @@ const UserListPage = () => {
     return (
         <div className="d-flex align-items-center justify-content-center">
             <div className="w-100 m-auto" style={{maxWidth: "660px", padding: "1rem"}}>
-                <p className="h3">Your christmas list</p>
+                <p className="h3">Your Christmas list</p>
                 <div className="card shadow">
                     <div className="card-header">My list</div>
                     <ul className="list-group list-group-flush">
@@ -112,7 +113,7 @@ const UserListPage = () => {
                                     ) : (
                                         <>
                                             <strong>{item.name}</strong>
-                                            <small className="text-muted">{item.description}</small>
+                                            <small className="text-muted">{renderDescription(item.description)}</small>
                                         </>
                                     )}
                                 </div>
@@ -207,4 +208,3 @@ const UserListPage = () => {
 };
 
 export default UserListPage;
-

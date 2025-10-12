@@ -2,7 +2,7 @@ import fetchWrapper from "./fetchWrapper";
 
 // Submit site password
 export const authenticateUser = async (password) => {
-    const response = await fetch('https://christmas.coombe.xyz/api/authenticate', {
+    const response = await fetch(process.env.REACT_APP_API_URL + '/authenticate', {
         method: 'POST',
         headers: {
             "Content-Type": "application/json",

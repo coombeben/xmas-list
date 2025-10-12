@@ -1,4 +1,4 @@
-const BASE_URL = 'https://christmas.coombe.xyz/api';
+const BASE_URL = process.env.REACT_APP_API_URL;
 
 const fetchWrapper = async (url, options = {}) => {
     const headers = {

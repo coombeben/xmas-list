@@ -92,7 +92,7 @@ const UserSelectionPage = ({onUserSelect}) => {
                                         onClick={() => setShowSpoilerModal(false)}></button>
                             </div>
                             <div className="modal-body">
-                                Are you certain that you want to login as "{userSelected?.name}"?. You'll be able to see what others have purchased for you if this isn't you!
+                                Are you certain that you want to login as "{userSelected?.name}"? You'll be able to see what others have purchased for you if this isn't you!
                             </div>
                             <div className="modal-footer">
                                 <button

@@ -1,17 +1,12 @@
 services:
-  react-app:
-    build: frontend
+  frontend:
+    image: registry.coombe.xyz/xmaslist/frontend:latest
+    build: ./frontend
     depends_on:
       flask-app:
-        condition: service_healthy
-#    cap_drop:
-#      - ALL
-#    cap_add:
-#      - CHOWN
-#      - DAC_OVERRIDE
-#      - SETGID
-#      - SETUID
-#      - NET_BIND_SERVICE
+        condition: service_started
+    environment:
+      - VITE_API_URL=${VITE_API_URL}
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf
     ports:
@@ -19,10 +14,12 @@ services:
     networks:
       - app-network
 
-  flask-app:
+  backend:
+    image: registry.coombe.xyz/xmaslist/backend:latest
     build: backend
     restart: unless-stopped
     environment:
+      - FLASK_ENV=${FLASK_ENV}
       - SECRET_KEY=${SECRET_KEY}
       - APP_PASSWORD=${APP_PASSWORD}
       - POSTGRES_DB=${POSTGRES_DB}
@@ -31,14 +28,11 @@ services:
     depends_on:
       db:
         condition: service_healthy
-#    cap_drop:
-#      - ALL
     healthcheck:
-      test: [ "CMD", "curl", "http://localhost:5000/api/healthcheck" ]
+      test: [ "CMD", "curl", "-sSf", "http://localhost:5000/api/healthcheck" ]
       interval: 30s
-      timeout: 60s
-      retries: 5
-      start_period: 80s
+      timeout: 10s
+      retries: 3
     networks:
       - app-network
 
@@ -46,8 +40,6 @@ services:
     hostname: db
     image: postgres
     restart: unless-stopped
-#    cap_drop:
-#      - ALL
     user: postgres
     shm_size: 128mb
     environment:

@@ -3,6 +3,7 @@ import secrets
 from datetime import datetime, timedelta
 
 from flask import Blueprint, request
+from sqlalchemy import text
 
 from app.extensions import db
 from app.models import Session
@@ -36,5 +37,5 @@ def authenticate():
 
 @auth_bp.route('/healthcheck', methods=['GET'])
 def healthcheck():
-    db.session.execute('SELECT 1')
-    return {'success': True}
+    db.session.execute(text('SELECT 1'))
+    return {'status': 'ok'}

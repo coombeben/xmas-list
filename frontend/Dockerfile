@@ -1,5 +1,8 @@
 FROM node:23-bookworm AS build
 
+ARG VITE_API_URL
+ENV VITE_API_URL=$VITE_API_URL
+
 WORKDIR /home/react
 
 COPY package.json package-lock.json ./

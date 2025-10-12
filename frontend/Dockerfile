@@ -19,14 +19,15 @@ COPY nginx.conf /etc/nginx/nginx.conf
 # Add non-root user
 RUN addgroup -S nginxuser && \
     adduser -S -G nginxuser nginxuser
-RUN chown -R nginxuser:nginxuser /usr/share/nginx/html && \
-    chown -R nginxuser:nginxuser /etc/nginx/nginx.conf
 
-# Set ownership and permissions for cache directories
-RUN mkdir -p /var/cache/nginx && \
-    chown -R nginxuser:nginxuser /var/cache/nginx
+# Create writable directories
+RUN mkdir -p /var/cache/nginx /run/nginx && \
+    chown -R nginxuser:nginxuser /var/cache/nginx /run/nginx /usr/share/nginx/html
 
 USER nginxuser
+
+EXPOSE 80
+STOPSIGNAL SIGQUIT
 
 # Run Nginx
 CMD ["nginx", "-g", "daemon off;"]

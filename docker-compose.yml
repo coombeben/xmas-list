@@ -2,9 +2,10 @@ services:
   frontend:
     image: registry.coombe.xyz/xmaslist/frontend:latest
     build: frontend
+    restart: unless-stopped
     depends_on:
       backend:
-        condition: service_started
+        condition: service_healthy
     environment:
       - VITE_API_URL=${VITE_API_URL}
     ports:

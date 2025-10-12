@@ -1,4 +1,4 @@
-const BASE_URL = import.meta.env.VITE_API_URL;
+const BASE_URL = import.meta.env.VITE_API_URL || 'https://christmas.coombe.xyz/api';
 
 const fetchWrapper = async (url, options = {}) => {
     const headers = {

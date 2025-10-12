@@ -1,8 +1,10 @@
 import fetchWrapper from "./fetchWrapper";
 
+const BASE_URL = import.meta.env.VITE_API_URL || 'https://christmas.coombe.xyz/api';
+
 // Submit site password
 export const authenticateUser = async (password) => {
-    const response = await fetch(import.meta.env.VITE_API_URL + '/authenticate', {
+    const response = await fetch(`${BASE_URL}/authenticate`, {
         method: 'POST',
         headers: {
             "Content-Type": "application/json",

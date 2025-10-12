@@ -1,9 +1,9 @@
 services:
   frontend:
     image: registry.coombe.xyz/xmaslist/frontend:latest
-    build: ./frontend
+    build: frontend
     depends_on:
-      flask-app:
+      backend:
         condition: service_started
     environment:
       - VITE_API_URL=${VITE_API_URL}

@@ -14,4 +14,6 @@ RUN groupadd -r flaskuser && useradd -r -g flaskuser flaskuser
 RUN chown -R flaskuser:flaskuser /home/flask
 USER flaskuser
 
+EXPOSE 5000
+
 CMD ["gunicorn", "-w", "2", "-b", "0.0.0.0:5000", "app:create_app()"]

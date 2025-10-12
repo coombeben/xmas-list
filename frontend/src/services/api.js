@@ -2,7 +2,7 @@ import fetchWrapper from "./fetchWrapper";
 
 // Submit site password
 export const authenticateUser = async (password) => {
-    const response = await fetch(process.env.REACT_APP_API_URL + '/authenticate', {
+    const response = await fetch(import.meta.env.VITE_API_URL + '/authenticate', {
         method: 'POST',
         headers: {
             "Content-Type": "application/json",

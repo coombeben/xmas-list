@@ -1,10 +1,10 @@
 import './styles/App.css';
 import React, {useEffect, useState} from 'react';
-import LandingPage from './pages/LandingPage';
-import UserSelectionPage from './pages/UserSelection';
-import UserListPage from './pages/MyList';
-import OtherUsersListsPage from "./pages/OtherLists";
-import {ReactComponent as Logo} from './img/christmas-tree.svg'
+import LandingPage from './pages/LandingPage.jsx';
+import UserSelectionPage from './pages/UserSelection.jsx';
+import UserListPage from './pages/MyList.jsx';
+import OtherUsersListsPage from "./pages/OtherLists.jsx";
+import Logo from './img/christmas-tree.svg?react'
 
 
 function App() {

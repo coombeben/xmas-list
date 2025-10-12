@@ -16,6 +16,7 @@ def handle_items(user_id: int):
         items = db.session.execute(
             db.select(Item)
             .filter_by(user_id=user_id)
+            .order_by(Item.item_id)
         ).scalars()
 
         if not items:

@@ -81,6 +81,7 @@ def get_others_lists(user_id: int):
     other_users = db.session.execute(
         db.select(User.user_id, User.name)
         .where(User.user_id != user_id)
+        .order_by(User.user_id)
     ).fetchall()
 
     other_users_lists = []
@@ -98,6 +99,7 @@ def get_others_lists(user_id: int):
             .outerjoin(Purchase, Purchase.item_id == Item.item_id)
             .outerjoin(User, User.user_id == Purchase.user_id)
             .where(Item.user_id == other_user_id)
+            .order_by(Item.item_id)
         )
         items_result = db.session.execute(items_query).fetchall()
 

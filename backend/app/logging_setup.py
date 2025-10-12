@@ -1,62 +1,45 @@
 import logging
-import os
-from logging.handlers import RotatingFileHandler
+import sys
 
 from flask import Flask
 
 
 def configure_logging(app: Flask):
     """
-    Configures logging for the Flask application.
-
-    Args:
-        app: The Flask application instance.
+    Configure unified logging for Flask when running under Gunicorn (or standalone).
+    Logs are written to stdout/stderr so that Docker can capture them.
     """
-    # Determine the log level based on the environment
-    if app.config.get('FLASK_ENV') == 'development':
-        log_level = logging.DEBUG
+
+    # Determine log level
+    env = app.config.get("FLASK_ENV", "production")
+    log_level = logging.DEBUG if env == "development" else logging.INFO
+
+    # Remove default Flask handlers to avoid duplicates
+    for handler in app.logger.handlers[:]:
+        app.logger.removeHandler(handler)
+
+    # Detect if running under Gunicorn
+    gunicorn_error_logger = logging.getLogger("gunicorn.error")
+    if gunicorn_error_logger.handlers:
+        # If running under Gunicorn, reuse its handlers
+        app.logger.handlers = gunicorn_error_logger.handlers
+        app.logger.setLevel(gunicorn_error_logger.level)
     else:
-        log_level = logging.INFO
+        # Otherwise, configure a clean stream handler to stdout
+        stream_handler = logging.StreamHandler(sys.stdout)
+        stream_handler.setFormatter(logging.Formatter(
+            "[%(asctime)s] %(levelname)s in %(module)s: %(message)s"
+        ))
+        stream_handler.setLevel(log_level)
+        app.logger.addHandler(stream_handler)
+        app.logger.setLevel(log_level)
 
-    # Set the log level for the root Flask logger
-    app.logger.setLevel(log_level)
+    # Align the Werkzeug (Flask server) logger
+    werkzeug_logger = logging.getLogger("werkzeug")
+    werkzeug_logger.setLevel(log_level)
+    if not werkzeug_logger.handlers:
+        werkzeug_logger.addHandler(logging.StreamHandler(sys.stdout))
 
-    # Handle file logging
-    if not app.debug and not app.testing:
-        # Create a 'logs' directory if it doesn't exist
-        log_directory = '/home/flask/logs'
-        if not os.path.exists(log_directory):
-            os.mkdir(log_directory)
-
-        # File handler for rotating logs
-        file_handler = RotatingFileHandler(
-            os.path.join(log_directory, 'app.log'),
-            maxBytes=10240,  # 10 KB log file size before rotation
-            backupCount=10
-        )
-
-        # Define the format for log entries
-        formatter = logging.Formatter(
-            '%(asctime)s [%(levelname)s] %(module)s: %(message)s [in %(pathname)s:%(lineno)d]'
-        )
-        file_handler.setFormatter(formatter)
-        file_handler.setLevel(log_level)
-
-        # Add the file handler to the application's logger
-        app.logger.addHandler(file_handler)
-
-    # 4. Ensure console logging is enabled for production
-    # (Flask's default handler might be removed by some WSGI setups)
-    if not app.debug:
-        # Check if the logger already has a console handler to avoid duplicates
-        if not any(isinstance(handler, logging.StreamHandler) for handler in app.logger.handlers):
-            # Console handler
-            stream_handler = logging.StreamHandler()
-            stream_handler.setFormatter(logging.Formatter(
-                '[%(asctime)s] %(levelname)s in %(module)s: %(message)s'
-            ))
-            stream_handler.setLevel(log_level)
-            app.logger.addHandler(stream_handler)
-
-        # Log confirmation
-        app.logger.info(f"Application startup. Log level set to: {logging.getLevelName(log_level)}")
+    app.logger.info(
+        f"Logging configured for environment: {env.upper()} (level: {logging.getLevelName(log_level)})"
+    )

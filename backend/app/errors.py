@@ -6,7 +6,7 @@ def register_error_handlers(app):
         return {'error': 'Forbidden'}, 403
 
     @app.errorhandler(400)
-    def bad_request(e):
+    def bad_request(error):
         return {'error': 'Bad Request'}, 400
 
     @app.errorhandler(404)
@@ -15,8 +15,10 @@ def register_error_handlers(app):
 
     @app.errorhandler(SQLAlchemyError)
     def database_error(error):
+        app.logger.error(error)
         return {'error': 'A database error occurred'}, 500
 
     @app.errorhandler(500)
     def internal_error(error):
+        app.logger.error(error)
         return {'error': 'Internal Server Error'}, 500

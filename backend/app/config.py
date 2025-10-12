@@ -8,7 +8,7 @@ connection_string = f"postgresql+psycopg://{os.environ.get('POSTGRES_USER')}:{os
 
 class BaseConfig:
     SQLALCHEMY_DATABASE_URI = connection_string
-    ENV: Literal['development', 'production'] = os.environ.get('FLASK_ENV', 'production')
+    FLASK_ENV: Literal['development', 'production'] = os.environ.get('FLASK_ENV', 'production')
     SECRET_KEY = os.environ.get('SECRET_KEY', 'dev')
     CORS_ORIGINS = []
 

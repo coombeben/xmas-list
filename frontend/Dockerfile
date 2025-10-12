@@ -16,16 +16,6 @@ COPY --from=build /home/react/build /usr/share/nginx/html
 
 COPY nginx.conf /etc/nginx/nginx.conf
 
-# Add non-root user
-RUN addgroup -S nginxuser && \
-    adduser -S -G nginxuser nginxuser
-
-# Create writable directories
-RUN mkdir -p /var/cache/nginx /run/nginx && \
-    chown -R nginxuser:nginxuser /var/cache/nginx /run/nginx /usr/share/nginx/html
-
-USER nginxuser
-
 EXPOSE 80
 STOPSIGNAL SIGQUIT
 

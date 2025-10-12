@@ -15,30 +15,6 @@ body {
     min-height: 100vh;
 }
 
-/* Subtle snowflake background pattern */
-body::before {
-    content: "❄ ✦ ❄ ✦ ❄ ✦ ❄ ✦ ❄ ✦ ❄ ✦ ❄ ✦ ❄ ✦ ❄ ✦ ❄ ✦";
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    font-size: 24px;
-    color: rgba(193, 30, 58, 0.05);
-    pointer-events: none;
-    z-index: 0;
-    line-height: 3;
-    word-spacing: 40px;
-    overflow: hidden;
-    white-space: pre-wrap;
-}
-
-/* Ensure content appears above background */
-#root > * {
-    position: relative;
-    z-index: 1;
-}
-
 /* Card styling */
 .card {
     border: 2px solid var(--christmas-gold);
@@ -186,7 +162,6 @@ body::before {
     align-items: center;
     justify-content: center;
     font-weight: 700;
-    border: 2px solid var(--christmas-gold);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -218,7 +193,6 @@ p[style*="color: red"], p[style*="color:red"] {
 /* Add festive sparkle effect on hover for cards */
 .card:hover {
     box-shadow: 0 6px 20px rgba(212, 175, 55, 0.3) !important;
-    transform: translateY(-2px);
     transition: all 0.3s ease;
 }
 

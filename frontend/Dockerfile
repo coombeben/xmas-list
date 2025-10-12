@@ -11,13 +11,16 @@ RUN npm run build
 
 FROM nginx:alpine
 
-# Copy  build files
+# Copy build files
 COPY --from=build /home/react/build /usr/share/nginx/html
+
+COPY nginx.conf /etc/nginx/nginx.conf
 
 # Add non-root user
 RUN addgroup -S nginxuser && \
     adduser -S -G nginxuser nginxuser
-RUN chown -R nginxuser:nginxuser /usr/share/nginx/html
+RUN chown -R nginxuser:nginxuser /usr/share/nginx/html && \
+    chown -R nginxuser:nginxuser /etc/nginx/nginx.conf
 
 # Set ownership and permissions for cache directories
 RUN mkdir -p /var/cache/nginx && \

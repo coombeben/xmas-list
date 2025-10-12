@@ -4,8 +4,7 @@ import LandingPage from './pages/LandingPage.jsx';
 import UserSelectionPage from './pages/UserSelection.jsx';
 import UserListPage from './pages/MyList.jsx';
 import OtherUsersListsPage from "./pages/OtherLists.jsx";
-import Logo from './img/christmas-tree.svg?react'
-
+import Logo from './img/christmas-tree.svg'
 
 function App() {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -29,7 +28,7 @@ function App() {
     useEffect(() => {
         const storedSessionToken = localStorage.getItem('authToken');
         if (storedSessionToken) {
-            setIsAuthenticated(true); // Assuming authenticated users have a user_id
+            setIsAuthenticated(true);
         }
     }, []);
 
@@ -44,9 +43,9 @@ function App() {
                     <header className="navbar d-flex justify-content-between align-items-center mx-2">
                         <div className="d-flex align-items-center">
                             <div style={{ height: "32px", width: "32px"}}>
-                                <Logo />
+                                <img src={Logo} alt="Christmas tree" style={{ height: "100%", width: "100%" }} />
                             </div>
-                            <h1 className="mb-0">Christmas lists</h1>
+                            <h1 className="mb-0">Christmas Lists</h1>
                         </div>
 
                         <div className="btn-group">

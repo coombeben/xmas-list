@@ -12,6 +12,7 @@ def handle_items(user_id: int):
         GET: Get all items for a given user
         POST: Create a new item
     """
+    #
     if request.method == 'GET':
         items = db.session.execute(
             db.select(Item)

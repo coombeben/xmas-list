@@ -17,7 +17,7 @@ def validate_token(token: str) -> bool:
     if not session:
         return False
 
-    return (datetime.now() - session.created) < timedelta(days=7)
+    return (datetime.now() - session.created) < timedelta(days=28)
 
 
 @auth_bp.route('/authenticate', methods=['POST'])

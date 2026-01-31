@@ -1,24 +1,23 @@
 # Christmas lists
 
-## React notes
+A simple full-stack application for managing and sharing Christmas lists using Vite, Flask, and PostgreSQL.
+Allows users to create/edit/delete items on their own list, view what others have purchased (no spoilers, of course!), and mark other's wishlist items as purchased. 
 
-Look back on this and cringe deeply in a year's time ♥
+Was this necessary? Debatably.
 
-## Flask notes
+Does another tool exist which could've done this? Certainly.
 
-Baby's first REST API. 
-
-Next time:
-1) Learn how to do JWT auth properly
-2) Do /api/users/me instead of /api/users/<user_id>
+Was it fun to do anyway? In a slightly sad way, definitely.
 
 ## Environment 
 
-```text
-SECRET_KEY
-APP_PASSWORD
+To run, define the following environment variables.
 
-POSTGRES_DB
-POSTGRES_USER
-POSTGRES_PASSWORD
+```env
+SECRET_KEY=
+APP_PASSWORD=
+
+POSTGRES_DB=
+POSTGRES_USER=
+POSTGRES_PASSWORD=
 ```

@@ -7,7 +7,8 @@ from app.models import User, Item, Purchase
 
 users_bp = Blueprint('users', __name__)
 
-COLOURS = ['#9e0142', '#d53e4f', '#f4693e', '#e87502', '#bc8a01', '#869e10', '#869e10', '#41a485', '#3288bd', '#5e4fa2']
+COLOURS = ['#9e0142', '#d53e4f', '#f4693e', '#e87502', '#bc8a01', '#869e10', '#869e10', '#41a485',
+           '#3288bd', '#5e4fa2', '#7b3294', '#006d77', '#264653', '#3d405b', '#6a4c32', '#386641']
 
 
 def new_colour() -> str:

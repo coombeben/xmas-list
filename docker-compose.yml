@@ -35,7 +35,7 @@ services:
 
   db:
     hostname: db
-    image: postgres
+    image: postgres:17
     restart: unless-stopped
     user: postgres
     shm_size: 128mb

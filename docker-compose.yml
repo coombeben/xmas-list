@@ -57,6 +57,8 @@ services:
 
 volumes:
   postgres_data:
+    external: true 
+    name: xmaslist_postgres_data
 
 networks:
   app-network:
